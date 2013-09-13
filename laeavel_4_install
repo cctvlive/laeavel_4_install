@@ -1,0 +1,375 @@
+准备: 1,xampp 1.7.7         http://www.apachefriends.org/en/xampp.html
+      2,Composer-Setup.exe  http://getcomposer.org/
+      3,laravel-master.zip  https://github.com/laravel/laravel/archive/master.zip 看手册安装
+
+
+自己完成1段,准备好3段): 
+
+1段1:php开启openssl
+
+php开启openssl的方法，大多数情况下openssl是没有开启的，要想启用需要进行下简单的设置：
+1： 首先检查php.ini中；extension=php_openssl.dll是否存在， 如果存在的话去掉前面的注释符‘；’， 如果不存在这行，那么添加extension=php_openssl.dll。
+2： 讲php文件夹下的： php_openssl.dll， ssleay32.dll， libeay32.dll 3个文件拷贝到 WINDOWS\system32\  文件夹下。
+3： 重启apache或者其他（你用的）服务器
+
+至此，openssl功能就开启了。
+
+2段1_win安装):
+
+点击2段exe程序并运行,选择php文件下的php.exe,一路nxet,完成
+
+3段1_win: 解压3段zip到htdocs 命名:laravel)
+
+我的电脑->运行->cmd->切换到网站安装目录,本地环境例如: cd D:xampp\htdocs\laravel -> 输入 composer install  后 敲回车 
+
+正在安装效果如:
+
+  – Installing doctrine/inflector (v1.0) 
+    Downloading: 100%
+
+  – Installing doctrine/common (2.4.0-RC1) 
+    Downloading: 100%
+
+  – Installing symfony/symfony (v2.2.1) 
+    Downloading: 100%
+
+  – Installing jdorn/sql-formatter (v1.2.0) 
+    Downloading: 100%
+
+  – Installing doctrine/dbal (2.3.3) 
+    Downloading: 100%
+
+  – Installing doctrine/doctrine-bundle (v1.2.0-beta1) 
+    Downloading: 100%
+
+  – Installing doctrine/orm (2.3.3) 
+    Downloading: 100%
+
+等待安装完成
+
+
+浏览器:http://localhost/laravel/public
+
+安装成功!
+
+2段):
+系统需求：
+
+Composer 需要PHP5.3.2+ 以上的环境来运行。有几个敏感的PHP设置和编译标志也是必需的，但安装程序会发出警告当存在任何不兼容的情况。
+
+比如PHP的扩展的要求是，安装或重新编译php without –disable-phar
+
+为了从源地址安装软件包，而不是简单的压缩文件包，您将需要安装软件包的版本控制工具，比如git、svn或hg等。
+
+Composer 是兼容多平台的，其运行适用于Windows，Linux和OSX。
+
+安装失败的错误消息：
+
+curl -sS https://getcomposer.org/installer | PHP 
+#!/usr/bin/env php 
+some settings on your machine make Composer unable to work properly. 
+Make sure that you fix the issues listed below and run this script again:
+
+The phar extension is missing. 
+Install it or recompile php without –disable-phar
+
+Your PHP (5.2.9) is too old, you must upgrade to PHP 5.3.2 or higher.
+
+我的本地默认开发环境是PHP 5.2.9，当我尝试在PHP 5.2.9上安装时，提示版本过低，需要升级到PHP 5.3.2 或者更高的版本。
+
+于是我下载XAMPP 1.7.7 usb lite 版本。
+
+E:\USB\Dropbox\phpstorm\php53>E:\USB\xampp_177\php\php.exe -v 
+PHP 5.3.8 (cli) (built: Aug 23 2011 11:50:20) 
+Copyright (c) 1997-2011 The PHP Group 
+Zend Engine v2.3.0, Copyright (c) 1998-2011 Zend Technologies
+
+XAMPP 1.7.7 下的PHP环境是5.3.8。确认我的PHP环境大于等于PHP5.3.2后。
+
+PHP 5.3 安装 Composer
+
+E:\USB\Dropbox\phpstorm\php53>curl -sS https://getcomposer.org/installer | E:\USB\xampp_177\php\php.exe 
+#!/usr/bin/env php 
+Some settings on your machine may cause stability issues with Composer. 
+If you encounter issues, try to change the following:
+
+The openssl extension is missing, which will reduce the security and stability o 
+f Composer. 
+If possible you should enable it or recompile php with –with-openssl
+
+Downloading…
+
+Composer successfully installed to: E:\USB\Dropbox\phpstorm\php53\composer.phar 
+Use it: php composer.phar
+
+注意：
+
+我关闭了XAMPP 1.7.7 Apache的SSL模块，所以Composer提示我警告，为了安全因素建议我开启SSL模块。不开启也不影响使用。
+安装时的参数 | PHP，一定要更改为真实的PHP环境路径，比如 | E:\USB\xampp_177\php\php.exe
+使用Composer为PHP路径 + 命令，在我们安装的环境中，使用方法为：E:\USB\xampp_177\php/php.exe composer.phar 命令。
+我安装的环境是在Windows下，如果在Linux下，而PHP 5.3 环境也不在默认PHP命令下时，应该采用 | /usr/php/53/usr/bin/php，例如：
+curl -sS https://getcomposer.org/installer | /usr/php/53/usr/bin/php
+
+安装完成后，检查安装版本。
+
+E:\USB\Dropbox\phpstorm\php53>E:\USB\xampp_177\php/php.exe composer.phar -V 
+Composer version 0209bd31a0ac3aeb2a68fc81e2d03c71072bef33
+
+检查PHP Composer命令：
+
+E:\USB\Dropbox\phpstorm\php53>E:\USB\xampp_177\php/php.exe composer.phar 
+   ______ 
+  / ____/___  ____ ___  ____  ____  ________  _____ 
+/ /   / __ \/ __ `__ \/ __ \/ __ \/ ___/ _ \/ ___/ 
+/ /___/ /_/ / / / / / / /_/ / /_/ (__  )  __/ / 
+\____/\____/_/ /_/ /_/ .___/\____/____/\___/_/ 
+                    /_/ 
+Composer version 0209bd31a0ac3aeb2a68fc81e2d03c71072bef33
+
+Usage: 
+  [options] command [arguments]
+
+Options: 
+  –help           -h Display this help message. 
+  –quiet          -q Do not output any message. 
+  –verbose        -v Increase verbosity of messages. 
+  –version        -V Display this application version. 
+  –ansi              Force ANSI output. 
+  –no-ansi           Disable ANSI output. 
+  –no-interaction -n Do not ask any interactive question. 
+  –profile           Display timing and memory usage information 
+  –working-dir    -d If specified, use the given directory as working directory 
+.
+
+Available commands: 
+  about            Short information about Composer 
+  archive          Create an archive of this composer package 
+  config           Set config options 
+  create-project   Create new project from a package into given directory. 
+  depends          Shows which packages depend on the given package 
+  diagnose         Diagnoses the system to identify common errors. 
+  dump-autoload    Dumps the autoloader 
+  dumpautoload     Dumps the autoloader 
+  help             Displays help for a command 
+  init             Creates a basic composer.json file in current directory. 
+  install          Installs the project dependencies from the composer.lock file 
+if present, or falls back on the composer.json. 
+  list             Lists commands 
+  require          Adds required packages to your composer.json and installs the 
+m 
+  run-script       Run the scripts defined in composer.json. 
+  search           Search for packages 
+  self-update      Updates composer.phar to the latest version. 
+  selfupdate       Updates composer.phar to the latest version. 
+  show             Show information about packages 
+  status           Show a list of locally modified packages 
+  update           Updates your dependencies to the latest version according to 
+composer.json, and updates the composer.lock file. 
+  validate         Validates a composer.json
+
+这样我们在PHP5.3环境下的Composer已经安装完成。
+
+类似的方法我们也可以安装PHP 5.4的环境上。
+
+
+PHP 5.4 安装 Composer
+
+下载XAMPP 1.8.1 usb lite 版本，将得到PHP5.4.7环境。
+
+E:\USB\Dropbox\phpstorm\php53>E:\USB\xampp_181\php\php.exe -v 
+PHP 5.4.7 (cli) (built: Sep 12 2012 23:48:31) 
+Copyright (c) 1997-2012 The PHP Group 
+Zend Engine v2.4.0, Copyright (c) 1998-2012 Zend Technologies
+
+确定版本高于PHP 5.3.2 后，开始安装：
+
+E:\USB\Dropbox\phpstorm\php54>curl -sS https://getcomposer.org/installer | E:\USB\xampp_181\php\php.exe 
+#!/usr/bin/env php 
+Some settings on your machine may cause stability issues with Composer. 
+If you encounter issues, try to change the following:
+
+The openssl extension is missing, which will reduce the security and stability o 
+f Composer. 
+If possible you should enable it or recompile php with –with-openssl
+
+Downloading…
+
+Composer successfully installed to: E:\USB\Dropbox\phpstorm\php54\composer.phar 
+Use it: php composer.phar
+
+安装完成后，检查安装版本。
+
+E:\USB\Dropbox\phpstorm\php54>E:\USB\xampp_181\php/php.exe composer.phar -V 
+Composer version 0209bd31a0ac3aeb2a68fc81e2d03c71072bef33
+
+这样，PHP 5.4 环境下的Composer也安装成功了。
+
+PHP Composer 使用
+
+这里我只简单演示使用PHP Composer安装Symfony框架。
+
+首先大概讲解一下命令的标准格式：
+
+php composer.phar create-project symfony/framework-standard-edition path/ 2.2.1
+
+第一个参数PHP为本地PHP开发环境，指向PHP运行命令。 
+第二个参数，为composer.phar方式下载。 
+第三个参数，为动作命令，例如create-project，目的是为了创建一个新的项目从一个软件包到指定目录。 
+第四个参数，为本地安装的目录。 
+第五个参数，为安装软件包的版本。
+
+根据上述我们在PHP5.4环境下安装的Composer，我们的安装命令为：
+
+E:\USB\Dropbox\phpstorm\php54>E:\USB\xampp_181\php/php.exe composer.phar create-project symfony/framework-standard-edition E:\USB\xampp_181\htdocs\Symfony 2.2.1
+
+安装结果：
+
+Installing symfony/framework-standard-edition (v2.2.1) 
+  – Installing symfony/framework-standard-edition (v2.2.1) 
+    Downloading: 100%
+
+Created project in E:\USB\xampp_181\htdocs\Symfony 
+Loading composer repositories with package information 
+Installing dependencies from lock file 
+  – Installing doctrine/lexer (v1.0) 
+    Downloading: 100%
+
+  – Installing doctrine/annotations (v1.1) 
+    Downloading: 100%
+
+  – Installing doctrine/cache (v1.0) 
+    Downloading: 100%
+
+  – Installing doctrine/collections (v1.1) 
+    Downloading: 100%
+
+  – Installing twig/twig (v1.12.2) 
+    Downloading: 100%
+
+  – Installing psr/log (1.0.0) 
+    Downloading: 100%
+
+  – Installing doctrine/inflector (v1.0) 
+    Downloading: 100%
+
+  – Installing doctrine/common (2.4.0-RC1) 
+    Downloading: 100%
+
+  – Installing symfony/symfony (v2.2.1) 
+    Downloading: 100%
+
+  – Installing jdorn/sql-formatter (v1.2.0) 
+    Downloading: 100%
+
+  – Installing doctrine/dbal (2.3.3) 
+    Downloading: 100%
+
+  – Installing doctrine/doctrine-bundle (v1.2.0-beta1) 
+    Downloading: 100%
+
+  – Installing doctrine/orm (2.3.3) 
+    Downloading: 100%
+
+  – Installing jms/cg (1.0.0) 
+    Downloading: 100%
+
+  – Installing phpoption/phpoption (1.2.0) 
+    Downloading: 100%
+
+  – Installing jms/parser-lib (1.0.0) 
+    Downloading: 100%
+
+  – Installing jms/metadata (1.3.0) 
+    Downloading: 100%
+
+  – Installing jms/aop-bundle (1.0.0) 
+    Downloading: 100%
+
+  – Installing jms/di-extra-bundle (1.3.0) 
+    Downloading: 100%
+
+  – Installing jms/security-extra-bundle (1.4.0) 
+    Downloading: 100%
+
+  – Installing sensio/distribution-bundle (v2.2.1) 
+    Downloading: 100%
+
+  – Installing sensio/framework-extra-bundle (v2.2.1) 
+    Downloading: 100%
+
+  – Installing sensio/generator-bundle (v2.2.1) 
+    Downloading: 100%
+
+  – Installing kriswallsmith/assetic (v1.1.0-alpha4) 
+    Downloading: 100%
+
+  – Installing symfony/assetic-bundle (v2.1.2) 
+    Downloading: 100%
+
+  – Installing monolog/monolog (1.4.1) 
+    Downloading: 100%
+
+  – Installing symfony/monolog-bundle (v2.2.0) 
+    Downloading: 100%
+
+  – Installing swiftmailer/swiftmailer (v4.3.0) 
+    Downloading: 100%
+
+  – Installing symfony/swiftmailer-bundle (v2.2.0) 
+    Downloading: 100%
+
+  – Installing twig/extensions (v1.0.0) 
+    Downloading: 100%
+
+kriswallsmith/assetic suggests installing leafo/lessphp (Assetic provides the integration with the lessphp LESS compiler) 
+kriswallsmith/assetic suggests installing leafo/scssphp (Assetic provides the integration with the scssphp SCSS compiler) 
+kriswallsmith/assetic suggests installing leafo/scssphp-compass (Assetic provides the integration with the SCSS compass plugin) 
+kriswallsmith/assetic suggests installing ptachoire/cssembed (Assetic provides the integration with phpcssembed to embed data uris) 
+monolog/monolog suggests installing doctrine/couchdb (Allow sending log messages to a CouchDB server) 
+monolog/monolog suggests installing ext-amqp (Allow sending log messages to an AMQP server (1.0+ required)) 
+monolog/monolog suggests installing ext-mongo (Allow sending log messages to a MongoDB server) 
+monolog/monolog suggests installing mlehner/gelf-php (Allow sending log messages to a GrayLog2 server) 
+monolog/monolog suggests installing raven/raven (Allow sending log messages to a Sentry server) 
+Generating autoload files 
+Clearing the cache for the dev environment with debug true 
+Installing assets using the hard copy option 
+Installing assets for Symfony\Bundle\FrameworkBundle into web/bundles/framework 
+Installing assets for Acme\DemoBundle into web/bundles/acmedemo 
+Installing assets for Sensio\Bundle\DistributionBundle into web/bundles/sensiodistribution
+
+从命令行结果，我们看到了整个Symfony框架的安装过程与结果。
+
+PHP Composer 定义依赖关系
+
+Composer在使用时会自动寻找composer.json这个文件。 composer.json将用来定义整个项目的依赖包。例如：
+
+{ 
+    "require": { 
+        "monolog/monolog": "1.2.*" 
+    } 
+}
+
+依赖包简单的说明，我们的项目需要一些从1.2开始的任何版本的monolog/monolog包。
+
+Composer是PHP中的一个依赖关系管理工具。通过Composer我们可以在发布软件时节省大量的文件数目和控制依赖包的版本。
+
+PHP Composer 项目
+
+Composer 项目官方：http://getcomposer.org
+
+Composer Github项目：https://github.com/composer/composer
+
+PHP Composer软件包列表：https://packagist.org/
+
+
+
+
+
+
+
+
+
+
+
+
+
